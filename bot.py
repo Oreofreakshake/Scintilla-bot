@@ -16,6 +16,7 @@ def welcome_text(message):
     bot.reply_to(message, "Hello, I'm working just fine!")
 
 
+@bot.message_handler(commands=["saamometer"])
 def saam_meter(message):
     tempINT = random.choice(range(101))
     value = str(tempINT)
