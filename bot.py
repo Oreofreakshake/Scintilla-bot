@@ -12,14 +12,15 @@ bot = telebot.TeleBot(TOKEN)
 
 
 @bot.message_handler(commands=["start"])
-def welcome_text(message):
-    bot.reply_to(message, "Hello, I'm working just fine!")
+def start_command(message):
+    command = commands.Commands(bot)
+    command.welcome_text(message)
 
 
 @bot.message_handler(commands=["saamometer"])
 def command_one(message):
-    value = commands.Commands(bot)
-    value.saam_meter(message)
+    command = commands.Commands(bot)
+    command.saam_meter(message)
 
 
 if __name__ == "__main__":
