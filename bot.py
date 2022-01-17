@@ -6,7 +6,7 @@ from cogs import commands
 bot = telebot.TeleBot("5028843783:AAFQ8J-o1QQ8y2JFDGE2lOsxV4gpZpUU-7g")
 
 
-@bot.message_handler(commands=["start"])
+@bot.message_handler(commands=["hello", "start"])
 def start_command(message):
     command = commands.Commands(bot)
     command.welcome_text(message)
