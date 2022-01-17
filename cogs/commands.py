@@ -11,7 +11,7 @@ class Commands:
     def welcome_text(self, message):
         self.bot.reply_to(
             message,
-            f"""These are the commands you can try! 
+            f"""These are the commands you can try for now! 
 /{commandnames.commandsname[1-n]}
          """,
         )
