@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
-url = "https://www.islamicfinder.org/prayer-times/"
+url = "https://www.islamicfinder.org/world/maldives/1282027/male-prayer-times/"
 
 session = requests.get(url)
 
