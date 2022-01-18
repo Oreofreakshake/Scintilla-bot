@@ -118,6 +118,9 @@ for time in ListOfTimeLeft:
     if time < 0:
         time = -time
         hourDiff.append(time)
+    else:
+        time = time
+        hourDiff.append(time)
 
 # ----------------------------------------------------------------------------------------
 # final time difference
