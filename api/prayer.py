@@ -18,7 +18,7 @@ lists = soup.find_all(
 
 for list in lists:
     FajarData = list.find("span", class_="prayertime").text
-    Fajar = FajarData.lower()  # fajar prayer time
+    Fajar = FajarData.lower()  # fajar prayer time -------------------------
     # print(Fajar)
 
 # dhuhar data
@@ -30,7 +30,7 @@ lists = soup.find_all(
 
 for list in lists:
     DhuharData = list.find("span", class_="prayertime").text
-    Dhuhar = DhuharData.lower()  # dhuhar prayer time
+    Dhuhar = DhuharData.lower()  # dhuhar prayer time --------------------------
     # print(Dhuhar)
 
 # asr data
@@ -42,7 +42,7 @@ lists = soup.find_all(
 
 for list in lists:
     AsrData = list.find("span", class_="prayertime").text
-    Asr = AsrData.lower()  # asr prayer time
+    Asr = AsrData.lower()  # asr prayer time -------------------------
     # print(Asr)
 
 # maghrib data
@@ -54,7 +54,7 @@ lists = soup.find_all(
 
 for list in lists:
     MaghribData = list.find("span", class_="prayertime").text
-    Maghrib = MaghribData.lower()  # maghrib prayer time
+    Maghrib = MaghribData.lower()  # maghrib prayer time -------------------------
     # print(Maghrib)
 
 # isha data
@@ -66,9 +66,62 @@ lists = soup.find_all(
 
 for list in lists:
     IshaData = list.find("span", class_="prayertime").text
-    Isha = IshaData.lower()  # isha prayer time
+    Isha = IshaData.lower()  # isha prayer time ------------------------------
     # print(Isha)
 
 
 Currenttime = datetime.now().strftime("%H:%M %p").lower()  # current time
 TodayData = date.today()  # todays date
+
+
+def convert24(str1):
+    if str1[-2:] == "am" and str1[:2] == "12":
+        return "00" + str1[2:-2]
+
+    elif str1[-2:] == "am":
+        return str1[:-2]
+
+    elif str1[-2:] == "pm" and str1[:2] == "12":
+        return str1[:-2]
+
+    else:
+        return str(int(str1[:2]) + 12) + str1[2:5]
+
+
+# converting to 24hours
+Fajar = convert24(Fajar)
+Dhuhar = convert24(Dhuhar)
+Asr = convert24(Asr)
+Maghrib = convert24(Maghrib)
+Isha = convert24(Isha)
+Currenttime = convert24(Currenttime)
+
+ListOfTimeLeft = []
+
+# getting the time difference
+TimeLeftFajar = int(Currenttime[:2]) - int(Fajar[:2])
+TimeLeftDhuhar = int(Currenttime[:2]) - int(Dhuhar[:2])
+TimeLeftAsr = int(Currenttime[:2]) - int(Asr[:2])
+TimeLeftMaghrib = int(Currenttime[:2]) - int(Maghrib[:2])
+TimeLeftIsha = int(Currenttime[:2]) - int(Isha[:2])
+
+ListOfTimeLeft.append(TimeLeftFajar)
+ListOfTimeLeft.append(TimeLeftDhuhar)
+ListOfTimeLeft.append(TimeLeftAsr)
+ListOfTimeLeft.append(TimeLeftMaghrib)
+ListOfTimeLeft.append(TimeLeftIsha)
+
+hourDiff = []
+
+# removing the negs
+for time in ListOfTimeLeft:
+    if time < 0:
+        time = -time
+        hourDiff.append(time)
+
+# final time difference
+TimeLeftFajar = hourDiff[0]
+TimeLeftDhuhar = hourDiff[1]
+TimeLeftAsr = hourDiff[2]
+TimeLeftMaghrib = hourDiff[3]
+TimeLeftIsha = hourDiff[4]
