@@ -69,11 +69,11 @@ class Commands:
         if prayer.TimeLeftIsha == 1:
             replyIsha = "It's almost time now, be ready and make sure you pray!"
 
-        Fajar = f"Fajar time is {prayer.Fajar12hour}\n{replyFajar}"
-        Dhuhar = f"Dhuhar time is {prayer.Dhuhar12hour}\n{replyDhuhar}"
-        Asr = f"{prayer.Asr12hour}\n{replyAsr}"
-        Maghrib = f"{prayer.Maghrib12hour}\n{replyMaghrib}"
-        Isha = f"{prayer.Isha12hour}\n{replyIsha}"
+        Fajar = f"Fajar time is {prayer.Fajar12hour}"  # \n{replyFajar}"
+        Dhuhar = f"Dhuhar time is {prayer.Dhuhar12hour}"  # \n{replyDhuhar}"
+        Asr = f"Asr time is {prayer.Asr12hour}"  # \n{replyAsr}"
+        Maghrib = f"Maghrib time is {prayer.Maghrib12hour}"  # \n{replyMaghrib}"
+        Isha = f"Isha time is {prayer.Isha12hour}"  # \n{replyIsha}"
 
         if message.text == "Fajar":
             self.bot.reply_to(message, Fajar, reply_markup=ReplyKeyboardRemove())
