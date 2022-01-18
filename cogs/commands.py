@@ -44,7 +44,7 @@ class Commands:
         button4 = types.KeyboardButton("Maghrib")
         button5 = types.KeyboardButton("Isha")
         button6 = types.KeyboardButton("All")
-        add_markup.add(button1, button2, button3, button3, button4, button5, button6)
+        add_markup.add(button1, button2, button3, button4, button5, button6)
         self.bot.send_message(
             message.chat.id,
             "What prayer time do you want to know?",
@@ -52,11 +52,28 @@ class Commands:
         )
 
     def bot_reply_to_prayertime(self, message):
-        Fajar = prayer.Fajar
-        Dhuhar = prayer.Dhuhar
-        Asr = prayer.Asr
-        Maghrib = prayer.Maghrib
-        Isha = prayer.Isha
+        replyFajar = f"you have around {prayer.TimeLeftFajar} hours left"
+        replyDhuhar = f"you have around {prayer.TimeLeftDhuhar} hours left"
+        replyAsr = f"you have around {prayer.TimeLeftAsr} hours left"
+        replyMaghrib = f"you have around {prayer.TimeLeftMaghrib} hours left"
+        replyIsha = f"you have around {prayer.TimeLeftIsha} hours left"
+
+        if prayer.TimeLeftFajar == 1:
+            replyFajar = "It's almost time now, be ready and make sure you pray!"
+        if prayer.TimeLeftDhuhar == 1:
+            replyDhuhar = "It's almost time now, be ready and make sure you pray!"
+        if prayer.TimeLeftAsr == 1:
+            replyAsr = "It's almost time now, be ready and make sure you pray!"
+        if prayer.TimeLeftMaghrib == 1:
+            replyMaghrib = "It's almost time now, be ready and make sure you pray!"
+        if prayer.TimeLeftIsha == 1:
+            replyIsha = "It's almost time now, be ready and make sure you pray!"
+
+        Fajar = f"Fajar time is {prayer.Fajar12hour}\n{replyFajar}"
+        Dhuhar = f"Dhuhar time is {prayer.Dhuhar12hour}\n{replyDhuhar}"
+        Asr = f"{prayer.Asr12hour}\n{replyAsr}"
+        Maghrib = f"{prayer.Maghrib12hour}\n{replyMaghrib}"
+        Isha = f"{prayer.Isha12hour}\n{replyIsha}"
 
         if message.text == "Fajar":
             self.bot.reply_to(message, Fajar, reply_markup=ReplyKeyboardRemove())

@@ -18,7 +18,7 @@ lists = soup.find_all(
 
 for list in lists:
     FajarData = list.find("span", class_="prayertime").text
-    Fajar = FajarData.lower()  # fajar prayer time -------------------------
+    Fajar12hour = FajarData.lower()  # fajar prayer time -------------------------
     # print(Fajar)
 
 # dhuhar data
@@ -30,7 +30,7 @@ lists = soup.find_all(
 
 for list in lists:
     DhuharData = list.find("span", class_="prayertime").text
-    Dhuhar = DhuharData.lower()  # dhuhar prayer time --------------------------
+    Dhuhar12hour = DhuharData.lower()  # dhuhar prayer time --------------------------
     # print(Dhuhar)
 
 # asr data
@@ -42,7 +42,7 @@ lists = soup.find_all(
 
 for list in lists:
     AsrData = list.find("span", class_="prayertime").text
-    Asr = AsrData.lower()  # asr prayer time -------------------------
+    Asr12hour = AsrData.lower()  # asr prayer time -------------------------
     # print(Asr)
 
 # maghrib data
@@ -54,7 +54,7 @@ lists = soup.find_all(
 
 for list in lists:
     MaghribData = list.find("span", class_="prayertime").text
-    Maghrib = MaghribData.lower()  # maghrib prayer time -------------------------
+    Maghrib12hour = MaghribData.lower()  # maghrib prayer time -------------------------
     # print(Maghrib)
 
 # isha data
@@ -66,11 +66,11 @@ lists = soup.find_all(
 
 for list in lists:
     IshaData = list.find("span", class_="prayertime").text
-    Isha = IshaData.lower()  # isha prayer time ------------------------------
+    Isha12hour = IshaData.lower()  # isha prayer time ------------------------------
     # print(Isha)
 
 
-Currenttime = datetime.now().strftime("%H:%M %p").lower()  # current time
+Currenttime12hour = datetime.now().strftime("%H:%M %p").lower()  # current time
 TodayData = date.today()  # todays date
 
 
@@ -89,13 +89,13 @@ def convert24(str1):
 
 
 # converting to 24hours
-Fajar = convert24(Fajar)
-Dhuhar = convert24(Dhuhar)
-Asr = convert24(Asr)
-Maghrib = convert24(Maghrib)
-Isha = convert24(Isha)
-Currenttime = convert24(Currenttime)
-
+Fajar = convert24(Fajar12hour)
+Dhuhar = convert24(Dhuhar12hour)
+Asr = convert24(Asr12hour)
+Maghrib = convert24(Maghrib12hour)
+Isha = convert24(Isha12hour)
+Currenttime = convert24(Currenttime12hour)
+# ----------------------------------------------------------------------------------------
 ListOfTimeLeft = []
 
 # getting the time difference
@@ -119,6 +119,7 @@ for time in ListOfTimeLeft:
         time = -time
         hourDiff.append(time)
 
+# ----------------------------------------------------------------------------------------
 # final time difference
 TimeLeftFajar = hourDiff[0]
 TimeLeftDhuhar = hourDiff[1]
