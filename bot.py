@@ -1,12 +1,4 @@
 import telebot
-from telebot import types
-from telebot.types import (
-    InlineKeyboardMarkup,
-    InlineKeyboardButton,
-    ReplyKeyboardMarkup,
-    ReplyKeyboardRemove,
-    KeyboardButton,
-)
 
 # my lib
 from cogs import commands

@@ -99,11 +99,11 @@ Currenttime = convert24(Currenttime12hour)
 ListOfTimeLeft = []
 
 # getting the time difference
-TimeLeftFajar = int(Currenttime[:2]) - int(Fajar[:2])
-TimeLeftDhuhar = int(Currenttime[:2]) - int(Dhuhar[:2])
-TimeLeftAsr = int(Currenttime[:2]) - int(Asr[:2])
-TimeLeftMaghrib = int(Currenttime[:2]) - int(Maghrib[:2])
-TimeLeftIsha = int(Currenttime[:2]) - int(Isha[:2])
+TimeLeftFajar = int(Currenttime[:2]) - int(Fajar[:2]) - 12
+TimeLeftDhuhar = int(Currenttime[:2]) - int(Dhuhar[:2]) - 12
+TimeLeftAsr = int(Currenttime[:2]) - int(Asr[:2]) - 12
+TimeLeftMaghrib = int(Currenttime[:2]) - int(Maghrib[:2]) - 12
+TimeLeftIsha = int(Currenttime[:2]) - int(Isha[:2]) - 12
 
 ListOfTimeLeft.append(TimeLeftFajar)
 ListOfTimeLeft.append(TimeLeftDhuhar)
