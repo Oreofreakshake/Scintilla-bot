@@ -10,7 +10,8 @@ from telebot.types import (
     KeyboardButton,
 )
 from api import prayer
-from datetime import date, datetime
+
+from prettytable import PrettyTable
 
 n = 1  # to make it easier for you to read the list, just ignore 0 and start from 1
 
@@ -28,6 +29,8 @@ class Commands:
          """,
         )
 
+    # -----------------------------------------------------------------------------------------------
+
     def saam_meter(self, message):  # ✅
         tempINT = random.choice(range(101))
         value = str(tempINT)
@@ -36,14 +39,16 @@ class Commands:
         else:
             self.bot.reply_to(message, "You are " + value + "% saam")
 
-    def prayertime(self, message):  # ❌ (still need some work)
+    # -----------------------------------------------------------------------------------------------
+
+    def prayertime(self, message):  # ✅ (Will update and make it better later)
         add_markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         button1 = types.KeyboardButton("Fajar")
         button2 = types.KeyboardButton("Dhuhar")
         button3 = types.KeyboardButton("Asr")
         button4 = types.KeyboardButton("Maghrib")
         button5 = types.KeyboardButton("Isha")
-        button6 = types.KeyboardButton("All")
+        button6 = types.KeyboardButton("Every prayer")
         add_markup.add(button1, button2, button3, button4, button5, button6)
         self.bot.send_message(
             message.chat.id,
@@ -75,6 +80,14 @@ class Commands:
         Maghrib = f"Maghrib time is {prayer.Maghrib12hour}\n{replyMaghrib}"
         Isha = f"Isha time is {prayer.Isha12hour}\n{replyIsha}"
 
+        DataGiven = PrettyTable(["Prayer", "Time"])
+
+        DataGiven.add_row(["Fathis", prayer.Fajar12hour])
+        DataGiven.add_row(["Dhuhar", prayer.Dhuhar12hour])
+        DataGiven.add_row(["Asr", prayer.Asr12hour])
+        DataGiven.add_row(["Maghrib", prayer.Maghrib12hour])
+        DataGiven.add_row(["Isha", prayer.Isha12hour])
+
         if message.text == "Fajar":
             self.bot.reply_to(message, Fajar, reply_markup=ReplyKeyboardRemove())
         if message.text == "Dhuhar":
@@ -85,5 +98,13 @@ class Commands:
             self.bot.reply_to(message, Maghrib, reply_markup=ReplyKeyboardRemove())
         if message.text == "Isha":
             self.bot.reply_to(message, Isha, reply_markup=ReplyKeyboardRemove())
-        if message.text == "All":
-            self.bot.reply_to(message, "-", reply_markup=ReplyKeyboardRemove())
+        if message.text == "Every prayer":
+            self.bot.send_message(
+                message.chat.id,
+                f"```{DataGiven}```",
+                reply_markup=ReplyKeyboardRemove(),
+                parse_mode="Markdown",
+            )
+
+
+# -----------------------------------------------------------------------------------------------

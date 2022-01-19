@@ -22,7 +22,7 @@ def command_one(message):
 
 
 # prayer command
-@bot.message_handler(commands=["prayertime"])  # ❌ (needs some fixing)
+@bot.message_handler(commands=["prayertime"])  # ✅ (Will update and make it better later)
 def command_two(message):
     command = commands.Commands(bot)
     command.prayertime(message)

@@ -1,4 +1,3 @@
-from zipfile import PyZipFile
 from bs4 import BeautifulSoup
 import requests
 from datetime import datetime, date
@@ -163,4 +162,4 @@ TimeLeftMaghrib = hourDiff[3]
 TimeLeftIsha = hourDiff[4]
 
 
-print(f"hours passed: {timepassed[0]}")
+print(f"hours passed: {timepassed[0]}\n")
