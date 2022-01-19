@@ -129,5 +129,3 @@ TimeLeftAsr = hourDiff[2]
 TimeLeftMaghrib = hourDiff[3]
 TimeLeftIsha = hourDiff[4]
 
-
-print(TimeLeftFajar)
