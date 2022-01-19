@@ -1,5 +1,4 @@
 import telebot
-
 # my lib
 from cogs import commands
 from api import prayer

@@ -1,6 +1,8 @@
+from zipfile import PyZipFile
 from bs4 import BeautifulSoup
 import requests
 from datetime import datetime, date
+import pytz
 
 url = "https://www.islamicfinder.org/world/maldives/1282027/male-prayer-times/"
 
@@ -70,7 +72,9 @@ for list in lists:
     # print(Isha)
 
 
-Currenttime = datetime.now().strftime("%H:%M").lower()  # current time
+timeinmv = pytz.timezone("Indian/Maldives")
+
+Currenttime = datetime.now(timeinmv).strftime("%H:%M").lower()  # current time
 TodayData = date.today()  # todays date
 
 
@@ -97,12 +101,41 @@ Isha = convert24(Isha12hour)
 # ----------------------------------------------------------------------------------------
 ListOfTimeLeft = []
 
+
+# calculating day
+timepassed = []
+
+if int(Currenttime[:2]) not in timepassed:
+    timepassed.append(int(Currenttime[:2]))
+
+
 # getting the time difference
-TimeLeftFajar = (int(Currenttime[:2]) - int(Fajar[:2])) - 12
-TimeLeftDhuhar = (int(Currenttime[:2]) - int(Dhuhar[:2])) -12
-TimeLeftAsr = (int(Currenttime[:2]) - int(Asr[:2])) -12
-TimeLeftMaghrib = (int(Currenttime[:2]) - int(Maghrib[:2])) - 12
-TimeLeftIsha = (int(Currenttime[:2]) - int(Isha[:2])) -12 
+
+if timepassed[0] <= int(Fajar[:2]):
+    TimeLeftFajar = int(Currenttime[:2]) - int(Fajar[:2])
+else:
+    TimeLeftFajar = (int(Currenttime[:2]) - int(Fajar[:2])) - 24
+
+if timepassed[0] <= int(Dhuhar[:2]):
+    TimeLeftDhuhar = int(Currenttime[:2]) - int(Dhuhar[:2])
+else:
+    TimeLeftDhuhar = (int(Currenttime[:2]) - int(Dhuhar[:2])) - 24
+
+if timepassed[0] <= int(Asr[:2]):
+    TimeLeftAsr = int(Currenttime[:2]) - int(Asr[:2])
+else:
+    TimeLeftAsr = (int(Currenttime[:2]) - int(Asr[:2])) - 24
+
+if timepassed[0] <= int(Maghrib[:2]):
+    TimeLeftMaghrib = int(Currenttime[:2]) - int(Maghrib[:2])
+else:
+    TimeLeftMaghrib = (int(Currenttime[:2]) - int(Maghrib[:2])) - 24
+
+if timepassed[0] <= int(Isha[:2]):
+    TimeLeftIsha = int(Currenttime[:2]) - int(Isha[:2])
+else:
+    TimeLeftIsha = (int(Currenttime[:2]) - int(Isha[:2])) - 24
+
 
 ListOfTimeLeft.append(TimeLeftFajar)
 ListOfTimeLeft.append(TimeLeftDhuhar)
@@ -129,3 +162,5 @@ TimeLeftAsr = hourDiff[2]
 TimeLeftMaghrib = hourDiff[3]
 TimeLeftIsha = hourDiff[4]
 
+
+print(f"hours passed: {timepassed[0]}")
