@@ -70,7 +70,7 @@ for list in lists:
     # print(Isha)
 
 
-Currenttime12hour = datetime.now().strftime("%H:%M %p").lower()  # current time
+Currenttime = datetime.now().strftime("%H:%M").lower()  # current time
 TodayData = date.today()  # todays date
 
 
@@ -94,16 +94,15 @@ Dhuhar = convert24(Dhuhar12hour)
 Asr = convert24(Asr12hour)
 Maghrib = convert24(Maghrib12hour)
 Isha = convert24(Isha12hour)
-Currenttime = convert24(Currenttime12hour)
 # ----------------------------------------------------------------------------------------
 ListOfTimeLeft = []
 
 # getting the time difference
-TimeLeftFajar = int(Currenttime[:2]) - int(Fajar[:2]) - 12
-TimeLeftDhuhar = int(Currenttime[:2]) - int(Dhuhar[:2]) - 12
-TimeLeftAsr = int(Currenttime[:2]) - int(Asr[:2]) - 12
-TimeLeftMaghrib = int(Currenttime[:2]) - int(Maghrib[:2]) - 12
-TimeLeftIsha = int(Currenttime[:2]) - int(Isha[:2]) - 12
+TimeLeftFajar = (int(Currenttime[:2]) - int(Fajar[:2])) - 12
+TimeLeftDhuhar = (int(Currenttime[:2]) - int(Dhuhar[:2])) -12
+TimeLeftAsr = (int(Currenttime[:2]) - int(Asr[:2])) -12
+TimeLeftMaghrib = (int(Currenttime[:2]) - int(Maghrib[:2])) - 12
+TimeLeftIsha = (int(Currenttime[:2]) - int(Isha[:2])) -12 
 
 ListOfTimeLeft.append(TimeLeftFajar)
 ListOfTimeLeft.append(TimeLeftDhuhar)
@@ -129,3 +128,6 @@ TimeLeftDhuhar = hourDiff[1]
 TimeLeftAsr = hourDiff[2]
 TimeLeftMaghrib = hourDiff[3]
 TimeLeftIsha = hourDiff[4]
+
+
+print(TimeLeftFajar)
