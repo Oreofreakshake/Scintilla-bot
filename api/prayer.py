@@ -110,27 +110,27 @@ if int(Currenttime[:2]) not in timepassed:
 
 # getting the time difference
 
-if timepassed[0] <= int(Fajar[:2]):
+if int(Currenttime[:2]) <= int(Fajar[:2]):
     TimeLeftFajar = int(Currenttime[:2]) - int(Fajar[:2])
 else:
     TimeLeftFajar = (int(Currenttime[:2]) - int(Fajar[:2])) - 24
 
-if timepassed[0] <= int(Dhuhar[:2]):
+if int(Currenttime[:2]) <= int(Dhuhar[:2]):
     TimeLeftDhuhar = int(Currenttime[:2]) - int(Dhuhar[:2])
 else:
     TimeLeftDhuhar = (int(Currenttime[:2]) - int(Dhuhar[:2])) - 24
 
-if timepassed[0] <= int(Asr[:2]):
+if int(Currenttime[:2]) <= int(Asr[:2]):
     TimeLeftAsr = int(Currenttime[:2]) - int(Asr[:2])
 else:
     TimeLeftAsr = (int(Currenttime[:2]) - int(Asr[:2])) - 24
 
-if timepassed[0] <= int(Maghrib[:2]):
+if int(Currenttime[:2]) <= int(Maghrib[:2]):
     TimeLeftMaghrib = int(Currenttime[:2]) - int(Maghrib[:2])
 else:
     TimeLeftMaghrib = (int(Currenttime[:2]) - int(Maghrib[:2])) - 24
 
-if timepassed[0] <= int(Isha[:2]):
+if int(Currenttime[:2]) <= int(Isha[:2]):
     TimeLeftIsha = int(Currenttime[:2]) - int(Isha[:2])
 else:
     TimeLeftIsha = (int(Currenttime[:2]) - int(Isha[:2])) - 24
@@ -162,4 +162,4 @@ TimeLeftMaghrib = hourDiff[3]
 TimeLeftIsha = hourDiff[4]
 
 
-print(f"hours passed: {timepassed[0]}\n")
+print(f"You started me at: {Currenttime}\n")

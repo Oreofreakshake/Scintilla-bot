@@ -1,4 +1,5 @@
 import telebot
+
 # my lib
 from cogs import commands
 from api import prayer
@@ -22,7 +23,9 @@ def command_one(message):
 
 
 # prayer command
-@bot.message_handler(commands=["prayertime"])  # ✅ (Will update and make it better later)
+@bot.message_handler(
+    commands=["prayertime"]
+)  # ✅ (Will update and make it better later)
 def command_two(message):
     command = commands.Commands(bot)
     command.prayertime(message)
