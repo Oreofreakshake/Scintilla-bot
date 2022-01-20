@@ -13,6 +13,10 @@ from api import prayer
 
 from prettytable import PrettyTable
 
+from datetime import datetime, date
+import pytz
+
+
 n = 1  # to make it easier for you to read the list, just ignore 0 and start from 1
 
 
@@ -57,28 +61,71 @@ class Commands:
         )
 
     def bot_reply_to_prayertime(self, message):
-        replyFajar = f"you have around {prayer.TimeLeftFajar} hours left"
-        replyDhuhar = f"you have around {prayer.TimeLeftDhuhar} hours left"
-        replyAsr = f"you have around {prayer.TimeLeftAsr} hours left"
-        replyMaghrib = f"you have around {prayer.TimeLeftMaghrib} hours left"
-        replyIsha = f"you have around {prayer.TimeLeftIsha} hours left"
 
-        if prayer.TimeLeftFajar == 1:
+        timeinmv = pytz.timezone("Indian/Maldives")
+
+        Currenttime = datetime.now(timeinmv).strftime("%H:%M").lower()
+
+        if int(Currenttime[:2]) <= int(prayer.Fajar[:2]):
+            TimeLeftFajar = int(Currenttime[:2]) - int(prayer.Fajar[:2])
+        else:
+            TimeLeftFajar = (int(Currenttime[:2]) - int(prayer.Fajar[:2])) - 24
+
+        if int(Currenttime[:2]) <= int(prayer.Dhuhar[:2]):
+            TimeLeftDhuhar = int(Currenttime[:2]) - int(prayer.Dhuhar[:2])
+        else:
+            TimeLeftDhuhar = (int(Currenttime[:2]) - int(prayer.Dhuhar[:2])) - 24
+
+        if int(Currenttime[:2]) <= int(prayer.Asr[:2]):
+            TimeLeftAsr = int(Currenttime[:2]) - int(prayer.Asr[:2])
+        else:
+            TimeLeftAsr = (int(Currenttime[:2]) - int(prayer.Asr[:2])) - 24
+
+        if int(Currenttime[:2]) <= int(prayer.Maghrib[:2]):
+            TimeLeftMaghrib = int(Currenttime[:2]) - int(prayer.Maghrib[:2])
+        else:
+            TimeLeftMaghrib = (int(Currenttime[:2]) - int(prayer.Maghrib[:2])) - 24
+
+        if int(Currenttime[:2]) <= int(prayer.Isha[:2]):
+            TimeLeftIsha = int(Currenttime[:2]) - int(prayer.Isha[:2])
+        else:
+            TimeLeftIsha = (int(Currenttime[:2]) - int(prayer.Isha[:2])) - 24
+
+        ListOfTimeLeft = []
+
+        if TimeLeftFajar == 1:
             replyFajar = "It's almost time now, be ready and make sure you pray!"
-        if prayer.TimeLeftDhuhar == 1:
+        if TimeLeftDhuhar == 1:
             replyDhuhar = "It's almost time now, be ready and make sure you pray!"
-        if prayer.TimeLeftAsr == 1:
+        if TimeLeftAsr == 1:
             replyAsr = "It's almost time now, be ready and make sure you pray!"
-        if prayer.TimeLeftMaghrib == 1:
+        if TimeLeftMaghrib == 1:
             replyMaghrib = "It's almost time now, be ready and make sure you pray!"
-        if prayer.TimeLeftIsha == 1:
+        if TimeLeftIsha == 1:
             replyIsha = "It's almost time now, be ready and make sure you pray!"
 
-        Fajar = f"Fajar time is {prayer.Fajar12hour}\n{replyFajar}"
-        Dhuhar = f"Dhuhar time is {prayer.Dhuhar12hour}\n{replyDhuhar}"
-        Asr = f"Asr time is {prayer.Asr12hour}\n{replyAsr}"
-        Maghrib = f"Maghrib time is {prayer.Maghrib12hour}\n{replyMaghrib}"
-        Isha = f"Isha time is {prayer.Isha12hour}\n{replyIsha}"
+        ListOfTimeLeft.append(TimeLeftFajar)
+        ListOfTimeLeft.append(TimeLeftDhuhar)
+        ListOfTimeLeft.append(TimeLeftAsr)
+        ListOfTimeLeft.append(TimeLeftMaghrib)
+        ListOfTimeLeft.append(TimeLeftIsha)
+
+        hourDiff = []
+
+        for time in ListOfTimeLeft:
+            if time < 0:
+                time = -time
+                hourDiff.append(time)
+            else:
+                time = time
+                hourDiff.append(time)
+
+        # final time difference
+        TimeLeftFajar = hourDiff[0]
+        TimeLeftDhuhar = hourDiff[1]
+        TimeLeftAsr = hourDiff[2]
+        TimeLeftMaghrib = hourDiff[3]
+        TimeLeftIsha = hourDiff[4]
 
         DataGiven = PrettyTable(["Prayer", "Time"])
 
@@ -87,6 +134,19 @@ class Commands:
         DataGiven.add_row(["Asr", prayer.Asr12hour])
         DataGiven.add_row(["Maghrib", prayer.Maghrib12hour])
         DataGiven.add_row(["Isha", prayer.Isha12hour])
+
+        # throwing the data
+        replyFajar = f"you have around {TimeLeftFajar} hours left"
+        replyDhuhar = f"you have around {TimeLeftDhuhar} hours left"
+        replyAsr = f"you have around {TimeLeftAsr} hours left"
+        replyMaghrib = f"you have around {TimeLeftMaghrib} hours left"
+        replyIsha = f"you have around {TimeLeftIsha} hours left"
+
+        Fajar = f"Fajar time is {prayer.Fajar12hour}\n{replyFajar}"
+        Dhuhar = f"Dhuhar time is {prayer.Dhuhar12hour}\n{replyDhuhar}"
+        Asr = f"Asr time is {prayer.Asr12hour}\n{replyAsr}"
+        Maghrib = f"Maghrib time is {prayer.Maghrib12hour}\n{replyMaghrib}"
+        Isha = f"Isha time is {prayer.Isha12hour}\n{replyIsha}"
 
         if message.text == "Fajar":
             self.bot.reply_to(message, Fajar, reply_markup=ReplyKeyboardRemove())
