@@ -37,6 +37,13 @@ def bot_reply_to_prayertime(message):
     command.bot_reply_to_prayertime(message)
 
 
+# covid command
+@bot.message_handler(commands=["covid"])  # ❌ just setup
+def command_three(message):
+    command = commands.Commands(bot)
+    command.covid(message)
+
+
 if __name__ == "__main__":
     try:
         print("I am online")

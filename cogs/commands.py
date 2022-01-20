@@ -29,7 +29,8 @@ class Commands:
             message.chat.id,
             f"""These are the commands you can try for now! 
 /{commandnames.commandsname[1-n]} 
-/{commandnames.commandsname[2-n]} 
+/{commandnames.commandsname[2-n]}
+/{commandnames.commandsname[3-n]} 
          """,
         )
 
@@ -166,5 +167,7 @@ class Commands:
                 parse_mode="Markdown",
             )
 
+    # -----------------------------------------------------------------------------------------------
 
-# -----------------------------------------------------------------------------------------------
+    def covid(self, message):  # ❌ just setup
+        pass
