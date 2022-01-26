@@ -1,3 +1,5 @@
+from ast import parse
+from dataclasses import dataclass
 import random
 
 from cogs import commandnames
@@ -10,6 +12,7 @@ from telebot.types import (
     KeyboardButton,
 )
 from api import prayer
+from api import corona
 
 from prettytable import PrettyTable
 
@@ -169,5 +172,14 @@ class Commands:
 
     # -----------------------------------------------------------------------------------------------
 
-    def covid(self, message):  # ❌ just setup
-        pass
+    def covid(self, message):
+        data = f"""This data is only valid in Maldives\n
+Total Cases  ```{corona.totalCases}```
+Total Deaths  ```{corona.totalDeaths}```
+Today Cases  ```{corona.todayCases}```
+Today Deaths  ```{corona.todayDeaths}```
+Active  ```{corona.active}```
+Recovered  ```{corona.recovered}```
+critical  ```{corona.critical}```
+        """
+        self.bot.send_message(message.chat.id, f"{data}", parse_mode="Markdown")

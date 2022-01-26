@@ -3,6 +3,7 @@ import telebot
 # my lib
 from cogs import commands
 from api import prayer
+from api import corona
 
 
 bot = telebot.TeleBot("5028843783:AAFQ8J-o1QQ8y2JFDGE2lOsxV4gpZpUU-7g")
@@ -31,17 +32,18 @@ def command_two(message):
     command.prayertime(message)
 
 
+# covid command
+@bot.message_handler(commands=["covid"])  # ✅
+def command_three(message):
+    command = commands.Commands(bot)
+    command.covid(message)
+
+
+# prayer command reply
 @bot.message_handler(content_types=["text"])
 def bot_reply_to_prayertime(message):
     command = commands.Commands(bot)
     command.bot_reply_to_prayertime(message)
-
-
-# covid command
-@bot.message_handler(commands=["covid"])  # ❌ just setup
-def command_three(message):
-    command = commands.Commands(bot)
-    command.covid(message)
 
 
 if __name__ == "__main__":
@@ -53,7 +55,7 @@ if __name__ == "__main__":
 
 # ==========================================================================================================================
 # code i might need later
-# def gen_markup():
+# def gen_markup(): ❌
 #    markup = types.InlineKeyboardMarkup()
 #    markup.row_width = 2
 #    markup.add(
