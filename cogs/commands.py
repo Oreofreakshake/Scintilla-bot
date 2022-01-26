@@ -94,17 +94,6 @@ class Commands:
 
         ListOfTimeLeft = []
 
-        if TimeLeftFajar == 1:
-            replyFajar = "It's almost time now, be ready and make sure you pray!"
-        if TimeLeftDhuhar == 1:
-            replyDhuhar = "It's almost time now, be ready and make sure you pray!"
-        if TimeLeftAsr == 1:
-            replyAsr = "It's almost time now, be ready and make sure you pray!"
-        if TimeLeftMaghrib == 1:
-            replyMaghrib = "It's almost time now, be ready and make sure you pray!"
-        if TimeLeftIsha == 1:
-            replyIsha = "It's almost time now, be ready and make sure you pray!"
-
         ListOfTimeLeft.append(TimeLeftFajar)
         ListOfTimeLeft.append(TimeLeftDhuhar)
         ListOfTimeLeft.append(TimeLeftAsr)
@@ -142,6 +131,17 @@ class Commands:
         replyAsr = f"you have around {TimeLeftAsr} hours left"
         replyMaghrib = f"you have around {TimeLeftMaghrib} hours left"
         replyIsha = f"you have around {TimeLeftIsha} hours left"
+
+        if TimeLeftFajar == 1:
+            replyFajar = "It's almost time now, be ready and make sure you pray!"
+        if TimeLeftDhuhar == 1:
+            replyDhuhar = "It's almost time now, be ready and make sure you pray!"
+        if TimeLeftAsr == 1:
+            replyAsr = "It's almost time now, be ready and make sure you pray!"
+        if TimeLeftMaghrib == 1:
+            replyMaghrib = "It's almost time now, be ready and make sure you pray!"
+        if TimeLeftIsha == 1:
+            replyIsha = "It's almost time now, be ready and make sure you pray!"
 
         Fajar = f"Fajar time is {prayer.Fajar12hour}\n{replyFajar}"
         Dhuhar = f"Dhuhar time is {prayer.Dhuhar12hour}\n{replyDhuhar}"
