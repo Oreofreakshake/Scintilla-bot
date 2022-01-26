@@ -173,14 +173,14 @@ class Commands:
     # -----------------------------------------------------------------------------------------------
 
     def covid(self, message):
-        data = f"""This data is only valid in Maldives\n
-Total Cases : ```{corona.totalCases}```\n
-Total Deaths : ```{corona.totalDeaths}```\n
-Today Cases : ```{corona.todayCases}```\n
-Today Deaths : ```{corona.todayDeaths}```\n
-Active : ```{corona.active}```\n
-Recovered : ```{corona.recovered}```\n
-Critical : ```{corona.critical}```\n
+        data = f"""*This data is only valid in Maldives*\n
+Total Cases : ```{corona.totalCases}```
+Total Deaths : ```{corona.totalDeaths}```
+Today Cases : ```{corona.todayCases}```
+Today Deaths : ```{corona.todayDeaths}```
+Active : ```{corona.active}```
+Recovered : ```{corona.recovered}```
+Critical : ```{corona.critical}```
         """
 
         self.bot.send_message(message.chat.id, f"{data}", parse_mode="Markdown")
