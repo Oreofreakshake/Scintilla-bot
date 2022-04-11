@@ -1,3 +1,8 @@
+""" 
+This is basically scraping the website for calculated prayertimes which is not very accurate so since I now have the database for the prayer timings, I'll be changing the command completely based on the database timings, thank you (yes this file is 100% useless but I'll keep it for possible future reference)
+"""
+
+
 from bs4 import BeautifulSoup
 import requests
 from datetime import datetime, date

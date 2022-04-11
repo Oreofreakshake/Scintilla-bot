@@ -1,5 +1,3 @@
-from ast import parse
-from dataclasses import dataclass
 import random
 
 from cogs import commandnames
@@ -11,7 +9,7 @@ from telebot.types import (
     ReplyKeyboardRemove,
     KeyboardButton,
 )
-from api import prayer
+from api import prayerDB
 from api import corona
 
 from prettytable import PrettyTable
@@ -49,15 +47,18 @@ class Commands:
 
     # -----------------------------------------------------------------------------------------------
 
-    def prayertime(self, message):  # ✅ (Will update and make it better later)
+    def prayertime(self, message):  # ✅ 
         add_markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        button1 = types.KeyboardButton("Fajar")
-        button2 = types.KeyboardButton("Dhuhar")
-        button3 = types.KeyboardButton("Asr")
-        button4 = types.KeyboardButton("Maghrib")
-        button5 = types.KeyboardButton("Isha")
-        button6 = types.KeyboardButton("Every prayer")
-        add_markup.add(button1, button2, button3, button4, button5, button6)
+
+        Prayerbutton = ["Fajuru", "Dhuhr", "Asr", "Maghrib", "Isha", "Every prayer"]
+        buttonArray = []
+
+        for items in range(len(Prayerbutton)):
+            button = types.KeyboardButton(Prayerbutton[items])
+            buttonArray.append(button)
+
+        add_markup.add(buttonArray[0],buttonArray[1],buttonArray[2],buttonArray[3],buttonArray[4],buttonArray[5])
+
         self.bot.send_message(
             message.chat.id,
             "What prayer time do you want to know?",
@@ -70,105 +71,55 @@ class Commands:
 
         Currenttime = datetime.now(timeinmv).strftime("%H:%M").lower()
 
-        if int(Currenttime[:2]) <= int(prayer.Fajar[:2]):
-            TimeLeftFajar = int(Currenttime[:2]) - int(prayer.Fajar[:2])
-        else:
-            TimeLeftFajar = (int(Currenttime[:2]) - int(prayer.Fajar[:2])) - 24
+        
+        
 
-        if int(Currenttime[:2]) <= int(prayer.Dhuhar[:2]):
-            TimeLeftDhuhar = int(Currenttime[:2]) - int(prayer.Dhuhar[:2])
-        else:
-            TimeLeftDhuhar = (int(Currenttime[:2]) - int(prayer.Dhuhar[:2])) - 24
+        
 
-        if int(Currenttime[:2]) <= int(prayer.Asr[:2]):
-            TimeLeftAsr = int(Currenttime[:2]) - int(prayer.Asr[:2])
-        else:
-            TimeLeftAsr = (int(Currenttime[:2]) - int(prayer.Asr[:2])) - 24
 
-        if int(Currenttime[:2]) <= int(prayer.Maghrib[:2]):
-            TimeLeftMaghrib = int(Currenttime[:2]) - int(prayer.Maghrib[:2])
-        else:
-            TimeLeftMaghrib = (int(Currenttime[:2]) - int(prayer.Maghrib[:2])) - 24
 
-        if int(Currenttime[:2]) <= int(prayer.Isha[:2]):
-            TimeLeftIsha = int(Currenttime[:2]) - int(prayer.Isha[:2])
-        else:
-            TimeLeftIsha = (int(Currenttime[:2]) - int(prayer.Isha[:2])) - 24
 
-        ListOfTimeLeft = []
 
-        ListOfTimeLeft.append(TimeLeftFajar)
-        ListOfTimeLeft.append(TimeLeftDhuhar)
-        ListOfTimeLeft.append(TimeLeftAsr)
-        ListOfTimeLeft.append(TimeLeftMaghrib)
-        ListOfTimeLeft.append(TimeLeftIsha)
 
-        hourDiff = []
 
-        for time in ListOfTimeLeft:
-            if time < 0:
-                time = -time
-                hourDiff.append(time)
-            else:
-                time = time
-                hourDiff.append(time)
 
-        # final time difference
-        TimeLeftFajar = hourDiff[0]
-        TimeLeftDhuhar = hourDiff[1]
-        TimeLeftAsr = hourDiff[2]
-        TimeLeftMaghrib = hourDiff[3]
-        TimeLeftIsha = hourDiff[4]
 
-        DataGiven = PrettyTable(["Prayer", "Time"])
 
-        DataGiven.add_row(["Fathis", prayer.Fajar12hour])
-        DataGiven.add_row(["Dhuhar", prayer.Dhuhar12hour])
-        DataGiven.add_row(["Asr", prayer.Asr12hour])
-        DataGiven.add_row(["Maghrib", prayer.Maghrib12hour])
-        DataGiven.add_row(["Isha", prayer.Isha12hour])
 
-        # throwing the data
-        replyFajar = f"you have around {TimeLeftFajar} hours left"
-        replyDhuhar = f"you have around {TimeLeftDhuhar} hours left"
-        replyAsr = f"you have around {TimeLeftAsr} hours left"
-        replyMaghrib = f"you have around {TimeLeftMaghrib} hours left"
-        replyIsha = f"you have around {TimeLeftIsha} hours left"
 
-        if TimeLeftFajar == 1:
-            replyFajar = "It's almost time now, be ready and make sure you pray!"
-        if TimeLeftDhuhar == 1:
-            replyDhuhar = "It's almost time now, be ready and make sure you pray!"
-        if TimeLeftAsr == 1:
-            replyAsr = "It's almost time now, be ready and make sure you pray!"
-        if TimeLeftMaghrib == 1:
-            replyMaghrib = "It's almost time now, be ready and make sure you pray!"
-        if TimeLeftIsha == 1:
-            replyIsha = "It's almost time now, be ready and make sure you pray!"
 
-        Fajar = f"Fajar time is {prayer.Fajar12hour}\n{replyFajar}"
-        Dhuhar = f"Dhuhar time is {prayer.Dhuhar12hour}\n{replyDhuhar}"
-        Asr = f"Asr time is {prayer.Asr12hour}\n{replyAsr}"
-        Maghrib = f"Maghrib time is {prayer.Maghrib12hour}\n{replyMaghrib}"
-        Isha = f"Isha time is {prayer.Isha12hour}\n{replyIsha}"
 
-        if message.text == "Fajar":
-            self.bot.reply_to(message, Fajar, reply_markup=ReplyKeyboardRemove())
-        if message.text == "Dhuhar":
-            self.bot.reply_to(message, Dhuhar, reply_markup=ReplyKeyboardRemove())
-        if message.text == "Asr":
-            self.bot.reply_to(message, Asr, reply_markup=ReplyKeyboardRemove())
-        if message.text == "Maghrib":
-            self.bot.reply_to(message, Maghrib, reply_markup=ReplyKeyboardRemove())
-        if message.text == "Isha":
-            self.bot.reply_to(message, Isha, reply_markup=ReplyKeyboardRemove())
-        if message.text == "Every prayer":
-            self.bot.send_message(
-                message.chat.id,
-                f"```{DataGiven}```",
-                reply_markup=ReplyKeyboardRemove(),
-                parse_mode="Markdown",
-            )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     # -----------------------------------------------------------------------------------------------
 
