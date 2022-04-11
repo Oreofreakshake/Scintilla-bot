@@ -47,21 +47,24 @@ class Commands:
 
     # -----------------------------------------------------------------------------------------------
 
-    def prayertime(self, message):  # ✅ 
+    def prayertime(self, message):  # ✅
         add_markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 
-        Prayerbutton = ["Fajuru", "Dhuhr", "Asr", "Maghrib", "Isha", "Every prayer"]
+        Prayerbutton = ["Male'", "Addu"]
         buttonArray = []
 
         for items in range(len(Prayerbutton)):
             button = types.KeyboardButton(Prayerbutton[items])
             buttonArray.append(button)
 
-        add_markup.add(buttonArray[0],buttonArray[1],buttonArray[2],buttonArray[3],buttonArray[4],buttonArray[5])
+        add_markup.add(
+            buttonArray[0],
+            buttonArray[1],
+        )
 
         self.bot.send_message(
             message.chat.id,
-            "What prayer time do you want to know?",
+            "For which location?",
             reply_markup=add_markup,
         )
 
@@ -69,57 +72,61 @@ class Commands:
 
         timeinmv = pytz.timezone("Indian/Maldives")
 
-        Currenttime = datetime.now(timeinmv).strftime("%H:%M").lower()
+        timer = datetime.now(timeinmv).strftime("%H:%M").lower()
 
-        
-        
+        CurrentTime = f"{timer}"
 
-        
-
-
+        iterateList = ["Fajuru", "Dhuhr", "Asr", "Maghrib", "Isha"]
+        day = prayerDB.get_day()
 
 
+        #--------driver code---------
 
+        if message.text == "Male'":
+                prayerTimes = prayerDB.getPrayerTime(57, day)
 
+                timeArray = []
+                for i in iterateList:
+                    timeArray.append(prayerTimes[i])
 
+                DataGivenM = PrettyTable(["Prayer", "Time (Male')"])
 
+                DataGivenM.add_row(["Fajuru", timeArray[0]])
+                DataGivenM.add_row(["Dhuhr ", timeArray[1]])
+                DataGivenM.add_row(["Asr", timeArray[2]])
+                DataGivenM.add_row(["Maghrib", timeArray[3]])
+                DataGivenM.add_row(["Isha", timeArray[4]])
 
+                self.bot.send_message(
+                    message.chat.id,
+                    f"```{DataGivenM}```",
+                    reply_markup=ReplyKeyboardRemove(),
+                    parse_mode="Markdown",
+                )
 
+        if message.text == "Addu":
+            prayerTimes = prayerDB.getPrayerTime(82, day)
 
+            timeArray = []
+            for i in iterateList:
+                timeArray.append(prayerTimes[i])
 
+            DataGivenA = PrettyTable(["Prayer", "Time (Addu)"])
 
+            DataGivenA.add_row(["Fajuru", timeArray[0]])
+            DataGivenA.add_row(["Dhuhr ", timeArray[1]])
+            DataGivenA.add_row(["Asr", timeArray[2]])
+            DataGivenA.add_row(["Maghrib", timeArray[3]])
+            DataGivenA.add_row(["Isha", timeArray[4]])
 
+            self.bot.send_message(
+                message.chat.id,
+                f"```{DataGivenA}```",
+                reply_markup=ReplyKeyboardRemove(),
+                parse_mode="Markdown",
+            )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
 
     # -----------------------------------------------------------------------------------------------
 
@@ -127,8 +134,6 @@ class Commands:
         data = f"""*This data is only valid in Maldives*\n
 Total Cases : ```{corona.totalCases}```
 Total Deaths : ```{corona.totalDeaths}```
-Today Cases : ```{corona.todayCases}```
-Today Deaths : ```{corona.todayDeaths}```
 Active : ```{corona.active}```
 Recovered : ```{corona.recovered}```
 Critical : ```{corona.critical}```

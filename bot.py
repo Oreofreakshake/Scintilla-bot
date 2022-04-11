@@ -2,7 +2,7 @@ import telebot
 
 # my lib
 from cogs import commands
-from api import prayer
+from api import prayerDB
 from api import corona
 
 
@@ -41,7 +41,7 @@ def command_three(message):
 
 # prayer command reply
 @bot.message_handler(content_types=["text"])
-def bot_reply_to_prayertime(message):
+def bot_reply_to_island(message):
     command = commands.Commands(bot)
     command.bot_reply_to_prayertime(message)
 

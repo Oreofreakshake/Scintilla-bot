@@ -99,3 +99,39 @@ if int(Currenttime[:2]) <= int(prayer.Fajar[:2]):
                 reply_markup=ReplyKeyboardRemove(),
                 parse_mode="Markdown",
             )
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+    def NextPrayerMale():
+        iterateList = ["Fajuru", "Dhuhr", "Asr", "Maghrib", "Isha"]
+        day = prayerDB.get_day()
+
+        prayerTimes = prayerDB.getPrayerTime(57, day)
+
+        timeArray = []
+        for i in iterateList:
+            timeArray.append(prayerTimes[i])
+
+
+
+--------------------------------------------------------------------------------------------
+value = "04:64"
+
+
+print(value[:2]) #first two
+print(value[-2:]) #last two
+
+
+print(int(value[-2:]) - int(value[:2])) #difference
