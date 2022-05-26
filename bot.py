@@ -4,28 +4,29 @@ import telebot
 from cogs import commands
 from api import prayerDB
 from api import corona
+from cogs import commandnames
 
 
 bot = telebot.TeleBot("5028843783:AAFQ8J-o1QQ8y2JFDGE2lOsxV4gpZpUU-7g")
-
+name = commandnames
 
 # start command
-@bot.message_handler(commands=["hello", "start"])  # ✅
+@bot.message_handler(commands=["hello", "start", "c"])  # ✅
 def start_command(message):
     command = commands.Commands(bot)
     command.welcome_text(message)
 
 
-# saamometer command
-@bot.message_handler(commands=["saamometer"])  # ✅
+# gayometer command
+@bot.message_handler(commands=[name.commandsname[0]])  # ✅
 def command_one(message):
     command = commands.Commands(bot)
-    command.saam_meter(message)
+    command.gay_meter(message)
 
 
 # prayer command
 @bot.message_handler(
-    commands=["prayertime"]
+    commands=[name.commandsname[1]]
 )  # ✅ (Will update and make it better later)
 def command_two(message):
     command = commands.Commands(bot)
@@ -33,7 +34,7 @@ def command_two(message):
 
 
 # covid command
-@bot.message_handler(commands=["covid"])  # ✅
+@bot.message_handler(commands=[name.commandsname[2]])  # ✅
 def command_three(message):
     command = commands.Commands(bot)
     command.covid(message)

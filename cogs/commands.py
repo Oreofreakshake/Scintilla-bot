@@ -37,13 +37,13 @@ class Commands:
 
     # -----------------------------------------------------------------------------------------------
 
-    def saam_meter(self, message):  # ✅
+    def gay_meter(self, message):  # ✅
         tempINT = random.choice(range(101))
         value = str(tempINT)
         if tempINT > 90:
-            self.bot.reply_to(message, "You are " + value + "% saam, damn unlucky")
+            self.bot.reply_to(message, "You are " + value + "% gay, damn unlucky")
         else:
-            self.bot.reply_to(message, "You are " + value + "% saam")
+            self.bot.reply_to(message, "You are " + value + "% gay")
 
     # -----------------------------------------------------------------------------------------------
 
@@ -57,10 +57,8 @@ class Commands:
             button = types.KeyboardButton(Prayerbutton[items])
             buttonArray.append(button)
 
-        add_markup.add(
-            buttonArray[0],
-            buttonArray[1],
-        )
+        for addbutton in range(len(buttonArray)):
+            add_markup.add(buttonArray[addbutton])
 
         self.bot.send_message(
             message.chat.id,
@@ -79,30 +77,29 @@ class Commands:
         iterateList = ["Fajuru", "Dhuhr", "Asr", "Maghrib", "Isha"]
         day = prayerDB.get_day()
 
-
-        #--------driver code---------
+        # --------driver code---------
 
         if message.text == "Male'":
-                prayerTimes = prayerDB.getPrayerTime(57, day)
+            prayerTimes = prayerDB.getPrayerTime(57, day)
 
-                timeArray = []
-                for i in iterateList:
-                    timeArray.append(prayerTimes[i])
+            timeArray = []
+            for i in iterateList:
+                timeArray.append(prayerTimes[i])
 
-                DataGivenM = PrettyTable(["Prayer", "Time (Male')"])
+            DataGivenM = PrettyTable(["Prayer", "Time (Male')"])
 
-                DataGivenM.add_row(["Fajuru", timeArray[0]])
-                DataGivenM.add_row(["Dhuhr ", timeArray[1]])
-                DataGivenM.add_row(["Asr", timeArray[2]])
-                DataGivenM.add_row(["Maghrib", timeArray[3]])
-                DataGivenM.add_row(["Isha", timeArray[4]])
+            DataGivenM.add_row(["Fajuru", timeArray[0]])
+            DataGivenM.add_row(["Dhuhr ", timeArray[1]])
+            DataGivenM.add_row(["Asr", timeArray[2]])
+            DataGivenM.add_row(["Maghrib", timeArray[3]])
+            DataGivenM.add_row(["Isha", timeArray[4]])
 
-                self.bot.send_message(
-                    message.chat.id,
-                    f"```{DataGivenM}```",
-                    reply_markup=ReplyKeyboardRemove(),
-                    parse_mode="Markdown",
-                )
+            self.bot.send_message(
+                message.chat.id,
+                f"```{DataGivenM}```",
+                reply_markup=ReplyKeyboardRemove(),
+                parse_mode="Markdown",
+            )
 
         if message.text == "Addu":
             prayerTimes = prayerDB.getPrayerTime(82, day)
@@ -125,8 +122,6 @@ class Commands:
                 reply_markup=ReplyKeyboardRemove(),
                 parse_mode="Markdown",
             )
-
-            
 
     # -----------------------------------------------------------------------------------------------
 
