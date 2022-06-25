@@ -1,3 +1,4 @@
+from audioop import add
 import random
 
 from cogs import commandnames
@@ -51,14 +52,16 @@ class Commands:
         add_markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 
         Prayerbutton = ["Male'", "Addu"]
-        buttonArray = []
+        buttons = []
 
-        for items in range(len(Prayerbutton)):
-            button = types.KeyboardButton(Prayerbutton[items])
-            buttonArray.append(button)
 
-        for addbutton in range(len(buttonArray)):
-            add_markup.add(buttonArray[addbutton])
+        for items in Prayerbutton:
+            button = types.KeyboardButton(items)
+            buttons.append(button)
+
+        for button in buttons:
+            add_markup.add(button)
+            
 
         self.bot.send_message(
             message.chat.id,
@@ -75,50 +78,27 @@ class Commands:
         CurrentTime = f"{timer}"
 
         iterateList = ["Fajuru", "Dhuhr", "Asr", "Maghrib", "Isha"]
+
         day = prayerDB.get_day()
+        catID = prayerDB.getIsland(message)
 
         # --------driver code---------
 
-        if message.text == "Male'":
-            prayerTimes = prayerDB.getPrayerTime(57, day)
+        if message.text == message.text:
+            prayerTimes = prayerDB.getPrayerTime(catID, day)
 
             timeArray = []
             for i in iterateList:
                 timeArray.append(prayerTimes[i])
 
-            DataGivenM = PrettyTable(["Prayer", "Time (Male')"])
+            DataGivenM = PrettyTable(["Prayer", f"Time ({message.text})"])
 
-            DataGivenM.add_row(["Fajuru", timeArray[0]])
-            DataGivenM.add_row(["Dhuhr ", timeArray[1]])
-            DataGivenM.add_row(["Asr", timeArray[2]])
-            DataGivenM.add_row(["Maghrib", timeArray[3]])
-            DataGivenM.add_row(["Isha", timeArray[4]])
+            for row in range(len(iterateList)):
+                DataGivenM.add_row([iterateList[row], timeArray[row]])
 
             self.bot.send_message(
                 message.chat.id,
                 f"```{DataGivenM}```",
-                reply_markup=ReplyKeyboardRemove(),
-                parse_mode="Markdown",
-            )
-
-        if message.text == "Addu":
-            prayerTimes = prayerDB.getPrayerTime(82, day)
-
-            timeArray = []
-            for i in iterateList:
-                timeArray.append(prayerTimes[i])
-
-            DataGivenA = PrettyTable(["Prayer", "Time (Addu)"])
-
-            DataGivenA.add_row(["Fajuru", timeArray[0]])
-            DataGivenA.add_row(["Dhuhr ", timeArray[1]])
-            DataGivenA.add_row(["Asr", timeArray[2]])
-            DataGivenA.add_row(["Maghrib", timeArray[3]])
-            DataGivenA.add_row(["Isha", timeArray[4]])
-
-            self.bot.send_message(
-                message.chat.id,
-                f"```{DataGivenA}```",
                 reply_markup=ReplyKeyboardRemove(),
                 parse_mode="Markdown",
             )

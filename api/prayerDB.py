@@ -1,7 +1,6 @@
 import sqlite3
 from datetime import date
 
-
 # cat = 82 & 57
 
 
@@ -9,7 +8,7 @@ def get_day():
     now = date.today()
     jan = date(now.year, 1, 1)
     diff = now - jan
-    return diff.days
+    return (diff.days) + 1
 
 
 def connectDB():
@@ -54,5 +53,14 @@ def getPrayerTime(catID, days):
 
     return prayerTimeaArray
 
-print(f"Prayer cogs are ready!\n")
 
+def getIsland(message):
+    catID = None
+    if message.text == "Male'":
+        catID = 57
+    elif message.text == "Addu":
+        catID = 82
+    return catID
+
+
+print(f"Prayer cogs are ready!\n")
