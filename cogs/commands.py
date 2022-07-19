@@ -1,4 +1,3 @@
-from audioop import add
 import random
 
 from cogs import commandnames
@@ -19,6 +18,8 @@ from datetime import datetime, date
 import pytz
 
 
+
+
 n = 1  # to make it easier for you to read the list, just ignore 0 and start from 1
 
 
@@ -26,8 +27,8 @@ class Commands:
     def __init__(self, bot):
         self.bot = bot
 
-    def welcome_text(self, message):  # ✅
-        self.bot.send_message(
+    async def welcome_text(self, message):  # ✅
+        await self.bot.send_message(
             message.chat.id,
             f"""These are the commands you can try for now! 
 /{commandnames.commandsname[1-n]} 
@@ -38,17 +39,17 @@ class Commands:
 
     # -----------------------------------------------------------------------------------------------
 
-    def gay_meter(self, message):  # ✅
+    async def gay_meter(self, message):  # ✅
         tempINT = random.choice(range(101))
         value = str(tempINT)
         if tempINT > 90:
-            self.bot.reply_to(message, "You are " + value + "% gay, damn unlucky")
+            await self.bot.reply_to(message, "You are " + value + "% gay, damn unlucky")
         else:
-            self.bot.reply_to(message, "You are " + value + "% gay")
+            await self.bot.reply_to(message, "You are " + value + "% gay")
 
     # -----------------------------------------------------------------------------------------------
 
-    def prayertime(self, message):  # ✅
+    async def prayertime(self, message):  # ✅
         add_markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 
         Prayerbutton = ["Male'", "Addu"]
@@ -63,13 +64,13 @@ class Commands:
             add_markup.add(button)
             
 
-        self.bot.send_message(
+        await self.bot.send_message(
             message.chat.id,
             "For which location?",
             reply_markup=add_markup,
         )
 
-    def bot_reply_to_prayertime(self, message):
+    async def bot_reply_to_prayertime(self, message):
 
         timeinmv = pytz.timezone("Indian/Maldives")
 
@@ -96,7 +97,7 @@ class Commands:
             for row in range(len(iterateList)):
                 DataGivenM.add_row([iterateList[row], timeArray[row]])
 
-            self.bot.send_message(
+            await self.bot.send_message(
                 message.chat.id,
                 f"```{DataGivenM}```",
                 reply_markup=ReplyKeyboardRemove(),
@@ -105,7 +106,7 @@ class Commands:
 
     # -----------------------------------------------------------------------------------------------
 
-    def covid(self, message):
+    async def covid(self, message):
         data = f"""*This data is only valid in Maldives*\n
 Total Cases : ```{corona.totalCases}```
 Total Deaths : ```{corona.totalDeaths}```
@@ -114,4 +115,4 @@ Recovered : ```{corona.recovered}```
 Critical : ```{corona.critical}```
         """
 
-        self.bot.send_message(message.chat.id, f"{data}", parse_mode="Markdown")
+        await self.bot.send_message(message.chat.id, f"{data}", parse_mode="Markdown")
