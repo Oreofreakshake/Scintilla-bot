@@ -3,11 +3,11 @@ import random
 from cogs import commandnames
 from telebot import types
 from telebot.types import (
-    InlineKeyboardMarkup,
-    InlineKeyboardButton,
-    ReplyKeyboardMarkup,
+    InlineKeyboardMarkup,  # not use
+    InlineKeyboardButton,  # not use
+    ReplyKeyboardMarkup,  # not use
     ReplyKeyboardRemove,
-    KeyboardButton,
+    KeyboardButton,  # not use
 )
 from api import prayerDB
 from api import corona
@@ -16,8 +16,6 @@ from prettytable import PrettyTable
 
 from datetime import datetime, date
 import pytz
-
-
 
 
 n = 1  # to make it easier for you to read the list, just ignore 0 and start from 1
@@ -55,14 +53,12 @@ class Commands:
         Prayerbutton = ["Male'", "Addu"]
         buttons = []
 
-
         for items in Prayerbutton:
             button = types.KeyboardButton(items)
             buttons.append(button)
 
         for button in buttons:
             add_markup.add(button)
-            
 
         await self.bot.send_message(
             message.chat.id,
@@ -89,8 +85,8 @@ class Commands:
             prayerTimes = prayerDB.getPrayerTime(catID, day)
 
             timeArray = []
-            for i in iterateList:
-                timeArray.append(prayerTimes[i])
+            for time in iterateList:
+                timeArray.append(prayerTimes[time])
 
             DataGivenM = PrettyTable(["Prayer", f"Time ({message.text})"])
 

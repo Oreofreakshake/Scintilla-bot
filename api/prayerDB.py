@@ -8,7 +8,7 @@ def get_day():
     now = date.today()
     jan = date(now.year, 1, 1)
     diff = now - jan
-    return (diff.days) + 1
+    return (diff.days) +1
 
 
 def connectDB():
@@ -64,3 +64,4 @@ def getIsland(message):
 
 
 print(f"Prayer cogs are ready!\n")
+

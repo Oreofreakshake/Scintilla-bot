@@ -16,10 +16,15 @@ async def SetCommand():
 
     await bot.delete_my_commands(scope=None, language_code=None)
 
-    await bot.set_my_commands(commands=[telebot.types.BotCommand(name.commandsname[0],name.commanddescript[0]),
-    telebot.types.BotCommand(name.commandsname[1],name.commanddescript[1]),
-    telebot.types.BotCommand(name.commandsname[2],name.commanddescript[2])
-    ])
+    Slash = []
+    n = 1  # to make it easier for you to read the list, just ignore 0 and start from 1
+
+    for item in range(len(name.commandsname)):
+        Slash.append(telebot.types.BotCommand(
+            name.commandsname[item], name.commanddescript[item]
+        ))
+
+    await bot.set_my_commands(commands=[Slash[1-n], Slash[2-n], Slash[3-n]])
 
     cmd = await bot.get_my_commands(scope=None, language_code=None)
     [c.to_json() for c in cmd]
