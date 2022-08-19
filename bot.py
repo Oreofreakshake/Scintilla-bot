@@ -20,18 +20,20 @@ async def SetCommand():
     n = 1  # to make it easier for you to read the list, just ignore 0 and start from 1
 
     for item in range(len(name.commandsname)):
-        Slash.append(telebot.types.BotCommand(
-            name.commandsname[item], name.commanddescript[item]
-        ))
+        Slash.append(
+            telebot.types.BotCommand(
+                name.commandsname[item], name.commanddescript[item]
+            )
+        )
 
-    await bot.set_my_commands(commands=[Slash[1-n], Slash[2-n], Slash[3-n]])
+    await bot.set_my_commands(commands=[Slash[1 - n], Slash[2 - n], Slash[3 - n]])
 
     cmd = await bot.get_my_commands(scope=None, language_code=None)
     [c.to_json() for c in cmd]
 
 
 # start command
-@bot.message_handler(commands=["hello", "start", "c"])  # ✅
+@bot.message_handler(commands=["hello", "start"])  # ✅
 async def start_command(message):
     await command.welcome_text(message)
 
