@@ -1,6 +1,5 @@
-commandsname = ["gaymeter", "prayertime", "covid"]
+commandsname = ["nocontext",  "prayertime"]
 commanddescript = [
-    "How gay are you?",
+    "Save out of context messages",
     "Prayer timings for Male' and Addu",
-    "Latest Covid data for Maldives",
 ]

@@ -10,7 +10,6 @@ from telebot.types import (
     KeyboardButton,  # not use
 )
 from api import prayerDB
-from api import corona
 
 from prettytable import PrettyTable
 
@@ -29,21 +28,19 @@ class Commands:
         await self.bot.send_message(
             message.chat.id,
             f"""These are the commands you can try for now! 
-/{commandnames.commandsname[1-n]} 
-/{commandnames.commandsname[2-n]}
-/{commandnames.commandsname[3-n]} 
+/{commandnames.commandsname[1-n]}
+/{commandnames.commandsname[2-n]} 
          """,
         )
 
     # -----------------------------------------------------------------------------------------------
+    # -1001803564730 stapler out of context
 
-    async def gay_meter(self, message):  # ✅
-        tempINT = random.choice(range(101))
-        value = str(tempINT)
-        if tempINT > 90:
-            await self.bot.reply_to(message, "You are " + value + "% gay, damn unlucky")
-        else:
-            await self.bot.reply_to(message, "You are " + value + "% gay")
+    async def nocontext(self, message):
+        await self.bot.send_message(
+            message.chat.id,
+            'Reply "save" to archive the message',
+        )
 
     # -----------------------------------------------------------------------------------------------
 
@@ -65,6 +62,14 @@ class Commands:
             "For which location?",
             reply_markup=add_markup,
         )
+
+    async def bot_reply_to_nocontext(self, message):
+        if message.text == "save":
+            msgID = message.reply_to_message.message_id
+            await self.bot.send_message(message.chat.id, "archived")
+
+        await self.bot.forward_message(-1001803564730, message.chat.id, msgID)
+
 
     async def bot_reply_to_prayertime(self, message):
 
@@ -101,14 +106,3 @@ class Commands:
             )
 
     # -----------------------------------------------------------------------------------------------
-
-    async def covid(self, message):
-        data = f"""*This data is only valid in Maldives*\n
-Total Cases : ```{corona.totalCases}```
-Total Deaths : ```{corona.totalDeaths}```
-Active : ```{corona.active}```
-Recovered : ```{corona.recovered}```
-Critical : ```{corona.critical}```
-        """
-
-        await self.bot.send_message(message.chat.id, f"{data}", parse_mode="Markdown")

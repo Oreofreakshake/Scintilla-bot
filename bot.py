@@ -26,7 +26,7 @@ async def SetCommand():
             )
         )
 
-    await bot.set_my_commands(commands=[Slash[1 - n], Slash[2 - n], Slash[3 - n]])
+    await bot.set_my_commands(commands=[Slash[1 - n], Slash[2 - n]])
 
     cmd = await bot.get_my_commands(scope=None, language_code=None)
     [c.to_json() for c in cmd]
@@ -38,11 +38,10 @@ async def start_command(message):
     await command.welcome_text(message)
 
 
-# gayometer command
-@bot.message_handler(commands=[name.commandsname[0]])  # ✅
+# out of context command
+@bot.message_handler(commands=[name.commandsname[0]])  # ❌
 async def command_one(message):
-    await command.gay_meter(message)
-
+    await command.nocontext(message)
 
 # prayer command
 @bot.message_handler(
@@ -52,11 +51,10 @@ async def command_two(message):
     await command.prayertime(message)
 
 
-# covid command
-@bot.message_handler(commands=[name.commandsname[2]])  # ✅
-async def command_three(message):
-    await command.covid(message)
-
+# out of context command reply
+@bot.message_handler(content_types=["text"])
+async def bot_reply_to_nocontext(message):
+    await command.bot_reply_to_nocontext(message) 
 
 # prayer command reply
 @bot.message_handler(content_types=["text"])

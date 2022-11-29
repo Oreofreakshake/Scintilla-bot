@@ -13,6 +13,3 @@ todayDeaths = json_data["todayDeaths"]
 recovered = json_data["recovered"]
 active = json_data["active"]
 critical = json_data["critical"]
-
-
-print(f"Corona cogs are ready!\n")
