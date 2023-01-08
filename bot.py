@@ -38,11 +38,6 @@ async def start_command(message):
     await command.welcome_text(message)
 
 
-# out of context command
-@bot.message_handler(commands=[name.commandsname[0]])  # ❌
-async def command_one(message):
-    await command.nocontext(message)
-
 # prayer command
 @bot.message_handler(
     commands=[name.commandsname[1]]
@@ -50,16 +45,19 @@ async def command_one(message):
 async def command_two(message):
     await command.prayertime(message)
 
+# out of context command
+@bot.message_handler(commands=[name.commandsname[0]])  # ❌
+async def command_one(message):
+    await command.nocontext(message)
 
-# out of context command reply
+# handler reply func
 @bot.message_handler(content_types=["text"])
-async def bot_reply_to_nocontext(message):
-    await command.bot_reply_to_nocontext(message) 
+async def bot_reply_to_handler(message):
+    if message.text == "save":
+        await command.bot_reply_to_nocontext(message)
+    if message.text == "Male'" or "Addu":
+        await command.bot_reply_to_prayertime(message)
 
-# prayer command reply
-@bot.message_handler(content_types=["text"])
-async def bot_reply_to_island(message):
-    await command.bot_reply_to_prayertime(message)
 
 
 if __name__ == "__main__":

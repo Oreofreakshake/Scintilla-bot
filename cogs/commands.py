@@ -35,6 +35,7 @@ class Commands:
 
     # -----------------------------------------------------------------------------------------------
     # -1001803564730 stapler out of context
+    # -640047845 sigma out of context
 
     async def nocontext(self, message):
         await self.bot.send_message(
@@ -68,7 +69,7 @@ class Commands:
             msgID = message.reply_to_message.message_id
             await self.bot.send_message(message.chat.id, "archived")
 
-        await self.bot.forward_message(-1001803564730, message.chat.id, msgID)
+        await self.bot.forward_message(-640047845, message.chat.id, msgID)
 
 
     async def bot_reply_to_prayertime(self, message):
