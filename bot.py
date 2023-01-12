@@ -38,19 +38,18 @@ async def start_command(message):
     await command.welcome_text(message)
 
 
+# out of context command
+@bot.message_handler(commands=[name.commandsname[0]])  # ✅
+async def command_one(message):
+    await command.nocontext(message)
+
+
 # prayer command
 @bot.message_handler(
     commands=[name.commandsname[1]]
 )  # ✅ (Will update and make it better later)
 async def command_two(message):
     await command.prayertime(message)
-
-
-# out of context command
-@bot.message_handler(commands=[name.commandsname[0]])  # ✅
-async def command_one(message):
-    await command.nocontext(message)
-
 
 # handler reply func
 @bot.message_handler(content_types=["text"])
@@ -71,17 +70,3 @@ if __name__ == "__main__":
         print("run time error\n")
 
 # ==========================================================================================================================
-# code i might need later
-# def gen_markup(): ❌
-#    markup = types.InlineKeyboardMarkup()
-#    markup.row_width = 2
-#    markup.add(
-#        types.InlineKeyboardButton(text="something", callback_data="something"),
-#    )
-#    return markup
-#
-#
-# @bot.callback_query_handler(func=lambda message: True)
-# def callback_query(call):
-#    if call.data == "something":
-#        bot.answer_callback_query(call.id, text="You Clicked")
