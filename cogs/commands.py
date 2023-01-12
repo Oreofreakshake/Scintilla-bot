@@ -27,7 +27,7 @@ class Commands:
     async def welcome_text(self, message):  # ✅
         await self.bot.send_message(
             message.chat.id,
-            f"""These are the commands you can try for now! 
+            f"""These are the commands you can try for now!
 /{commandnames.commandsname[1-n]}
 /{commandnames.commandsname[2-n]} 
          """,
@@ -55,8 +55,8 @@ class Commands:
             button = types.KeyboardButton(items)
             buttons.append(button)
 
-        for button in buttons:
-            add_markup.add(button)
+        #for index, button in enumerate(buttons):
+        add_markup.add(buttons[0], buttons[1])
 
         await self.bot.send_message(
             message.chat.id,
@@ -107,3 +107,5 @@ class Commands:
             )
 
     # -----------------------------------------------------------------------------------------------
+
+

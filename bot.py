@@ -1,10 +1,10 @@
 import telebot
+import asyncio
 from telebot.async_telebot import AsyncTeleBot
 
 # my lib
 from cogs import commands
 from cogs import commandnames
-
 
 # bot = telebot.TeleBot("5227265639:AAFAlErq_cl2QnS3MvDM7Fn_n2ZZ4U-g9hQ") before async
 bot = AsyncTeleBot("5227265639:AAFAlErq_cl2QnS3MvDM7Fn_n2ZZ4U-g9hQ")
@@ -45,10 +45,12 @@ async def start_command(message):
 async def command_two(message):
     await command.prayertime(message)
 
+
 # out of context command
-@bot.message_handler(commands=[name.commandsname[0]])  # ❌
+@bot.message_handler(commands=[name.commandsname[0]])  # ✅
 async def command_one(message):
     await command.nocontext(message)
+
 
 # handler reply func
 @bot.message_handler(content_types=["text"])
@@ -59,11 +61,9 @@ async def bot_reply_to_handler(message):
         await command.bot_reply_to_prayertime(message)
 
 
-
 if __name__ == "__main__":
     try:
-        import asyncio
-
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
         print("I am online\n")
         asyncio.run(SetCommand())
         asyncio.run(bot.infinity_polling())
