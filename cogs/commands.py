@@ -29,7 +29,8 @@ class Commands:
             message.chat.id,
             f"""These are the commands you can try for now!
 /{commandnames.commandsname[1-n]}
-/{commandnames.commandsname[2-n]} 
+/{commandnames.commandsname[2-n]}
+/{commandnames.commandsname[3-n]} 
          """,
         )
 
@@ -55,7 +56,7 @@ class Commands:
             button = types.KeyboardButton(items)
             buttons.append(button)
 
-        #for index, button in enumerate(buttons):
+        # for index, button in enumerate(buttons):
         add_markup.add(buttons[0], buttons[1])
 
         await self.bot.send_message(
@@ -64,6 +65,19 @@ class Commands:
             reply_markup=add_markup,
         )
 
+         # -----------------------------------------------------------------------------------------------
+
+    async def getID(self, message):
+        msgChatID = message.chat.id
+        await self.bot.send_message(
+            msgChatID,
+            f"chat id : ```{msgChatID}```",
+            reply_markup=ReplyKeyboardRemove(),
+            parse_mode="Markdown",
+        )
+
+         # -----------------------------------------------------------------------------------------------
+
     async def bot_reply_to_nocontext(self, message):
         if message.text == "save":
             msgID = message.reply_to_message.message_id
@@ -71,6 +85,7 @@ class Commands:
 
         await self.bot.forward_message(-640047845, message.chat.id, msgID)
 
+         # -----------------------------------------------------------------------------------------------
 
     async def bot_reply_to_prayertime(self, message):
 
@@ -107,5 +122,3 @@ class Commands:
             )
 
     # -----------------------------------------------------------------------------------------------
-
-

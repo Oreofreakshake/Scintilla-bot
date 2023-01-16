@@ -17,7 +17,6 @@ async def SetCommand():
     await bot.delete_my_commands(scope=None, language_code=None)
 
     Slash = []
-    n = 1  # to make it easier for you to read the list, just ignore 0 and start from 1
 
     for item in range(len(name.commandsname)):
         Slash.append(
@@ -26,7 +25,8 @@ async def SetCommand():
             )
         )
 
-    await bot.set_my_commands(commands=[Slash[1 - n], Slash[2 - n]])
+    await bot.set_my_commands(commands=[Slash[0], Slash[1], Slash[2]])
+
 
     cmd = await bot.get_my_commands(scope=None, language_code=None)
     [c.to_json() for c in cmd]
@@ -51,6 +51,12 @@ async def command_one(message):
 async def command_two(message):
     await command.prayertime(message)
 
+
+@bot.message_handler(commands=[name.commandsname[2]])  # ✅
+async def command_three(message):
+    await command.getID(message)
+
+
 # handler reply func
 @bot.message_handler(content_types=["text"])
 async def bot_reply_to_handler(message):
@@ -66,7 +72,7 @@ if __name__ == "__main__":
         print("I am online\n")
         asyncio.run(SetCommand())
         asyncio.run(bot.infinity_polling())
-    except:
-        print("run time error\n")
+    except Exception as e:
+        print("run time error\n", e)
 
 # ==========================================================================================================================
