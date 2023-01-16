@@ -6,8 +6,8 @@ from telebot.async_telebot import AsyncTeleBot
 from cogs import commands
 from cogs import commandnames
 
-# bot = telebot.TeleBot("5227265639:AAFAlErq_cl2QnS3MvDM7Fn_n2ZZ4U-g9hQ") before async
-bot = AsyncTeleBot("5227265639:AAFAlErq_cl2QnS3MvDM7Fn_n2ZZ4U-g9hQ")
+# bot = telebot.TeleBot("") before async
+bot = AsyncTeleBot("")
 name = commandnames
 command = commands.Commands(bot)
 
