@@ -69,6 +69,7 @@ class Commands:
 
     async def getID(self, message):
         msgChatID = message.chat.id
+        print(message)
         await self.bot.send_message(
             msgChatID,
             f"chat id : ```{msgChatID}```",
@@ -83,7 +84,7 @@ class Commands:
             msgID = message.reply_to_message.message_id
             await self.bot.send_message(message.chat.id, "archived")
 
-        await self.bot.forward_message(-640047845, message.chat.id, msgID)
+        await self.bot.forward_message(-1001650268553, message.chat.id, msgID)
 
          # -----------------------------------------------------------------------------------------------
 
