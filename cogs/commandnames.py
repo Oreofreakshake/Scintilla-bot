@@ -1,6 +1,6 @@
-commandsname = ["nocontext", "prayertime", "getid"]
+commandsname = ["archive", "prayertime", "getid"]
 commanddescript = [
-    "Save out of context messages",
+    "Save your clips and messages",
     "Prayer timings for Male' and Addu",
     "check ID of the current chat",
 ]

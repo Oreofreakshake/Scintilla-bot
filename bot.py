@@ -3,13 +3,13 @@ import asyncio
 from telebot.async_telebot import AsyncTeleBot
 
 # my lib
-from cogs import commands
+from cogs import cog__init__
 from cogs import commandnames
 
 # bot = telebot.TeleBot("5885503791:AAGP-d6F-eZZxB49gorKADSlDpnZATN60lg") before async
 bot = AsyncTeleBot("5885503791:AAGP-d6F-eZZxB49gorKADSlDpnZATN60lg")
 name = commandnames
-command = commands.Commands(bot)
+command = cog__init__.Commands(bot)
 
 # setcommands
 async def SetCommand():
@@ -35,13 +35,13 @@ async def SetCommand():
 # start command
 @bot.message_handler(commands=["hello", "start"])  # ✅
 async def start_command(message):
-    await command.welcome_text(message)
+    await command.start_text(message)
 
 
 # out of context command
 @bot.message_handler(commands=[name.commandsname[0]])  # ✅
 async def command_one(message):
-    await command.nocontext(message)
+    await command.archive(message)
 
 
 # prayer command
