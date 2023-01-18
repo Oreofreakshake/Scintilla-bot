@@ -59,7 +59,7 @@ async def bot_reply_to_prayertime(bot, message):
 
         await bot.send_message(
             message.chat.id,
-            f"```{DataGivenM}```",
+            f"```\n{DataGivenM}```",
             reply_markup=ReplyKeyboardRemove(),
-            parse_mode="Markdown",
+            parse_mode="MarkdownV2",
         )

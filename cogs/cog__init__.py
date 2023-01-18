@@ -1,13 +1,14 @@
+import random
+
 # my libraries
-from cogs import commandnames
-
-# bot commands
-
+# commands
 from cogs.commands.prayertime import prayertime, bot_reply_to_prayertime
 from cogs.commands.archive import archive, bot_reply_archive
 from cogs.commands.getid import getID
+from cogs.commands.valorant import valorant
 
-n = 1  # to make it easier for you to read the list, just ignore 0 and start from 1
+# events
+from cogs.events.help import help
 
 
 class Commands:
@@ -17,14 +18,13 @@ class Commands:
     async def start_text(self, message):  # ✅
         await self.bot.send_message(
             message.chat.id,
-            f"""These are the commands you can try for now!
-/{commandnames.commandsname[1-n]}
-/{commandnames.commandsname[2-n]}
-/{commandnames.commandsname[3-n]} 
-         """,
+            f"""Hello 👋\nYou can use /help for every command details""",
         )
 
     # -----------------------------------------------------------------------------------------------
+
+    async def help(self, message):
+        await help(self.bot, message)
 
     async def archive(self, message):
         await archive(self.bot, message)
@@ -33,11 +33,14 @@ class Commands:
 
     async def prayertime(self, message):  # ✅
         await prayertime(self.bot, message)
-        
+
         # -----------------------------------------------------------------------------------------------
 
     async def getID(self, message):
         await getID(self.bot, message)
+
+    async def valorant(self, message):
+        await valorant(self.bot, message)
 
         # -----------------------------------------------------------------------------------------------
 
@@ -48,7 +51,5 @@ class Commands:
 
     async def bot_reply_to_prayertime(self, message):
         await bot_reply_to_prayertime(self.bot, message)
-
-
 
     # -----------------------------------------------------------------------------------------------

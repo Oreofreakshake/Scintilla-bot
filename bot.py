@@ -11,6 +11,12 @@ bot = AsyncTeleBot("5885503791:AAGP-d6F-eZZxB49gorKADSlDpnZATN60lg")
 name = commandnames
 command = cog__init__.Commands(bot)
 
+
+# TOKEN = os.getenv("TOKEN")
+
+# bot = AsyncTeleBot(TOKEN)
+
+
 # setcommands
 async def SetCommand():
 
@@ -25,8 +31,7 @@ async def SetCommand():
             )
         )
 
-    await bot.set_my_commands(commands=[Slash[0], Slash[1], Slash[2]])
-
+    await bot.set_my_commands(commands=[Slash[0], Slash[1], Slash[2], Slash[3]])
 
     cmd = await bot.get_my_commands(scope=None, language_code=None)
     [c.to_json() for c in cmd]
@@ -36,6 +41,12 @@ async def SetCommand():
 @bot.message_handler(commands=["hello", "start"])  # ✅
 async def start_command(message):
     await command.start_text(message)
+
+
+# help command
+@bot.message_handler(commands=["help"])
+async def help_command(message):
+    await command.help(message)
 
 
 # out of context command
@@ -55,6 +66,12 @@ async def command_two(message):
 @bot.message_handler(commands=[name.commandsname[2]])  # ✅
 async def command_three(message):
     await command.getID(message)
+
+
+# valorant command
+@bot.message_handler(commands=[name.commandsname[3]])
+async def command_four(message):
+    await command.valorant(message)
 
 
 # handler reply func
