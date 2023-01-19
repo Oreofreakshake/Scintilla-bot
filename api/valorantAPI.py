@@ -1,4 +1,6 @@
 import requests
+import urllib.request
+import os
 
 
 def GetAccount(username, tag):
@@ -13,5 +15,11 @@ def GetRank(username, tag, region):
     return json_data_rank
 
 
+def GetBanner(username, tag):
+    acc = f"https://api.henrikdev.xyz/valorant/v1/account/{username}/{tag}"
+    json_data_acc = requests.get(acc).json()
+
+    banner = json_data_acc["data"]["card"]["wide"]
+    return banner
 
 print("Valorant cogs are ready!\n")
