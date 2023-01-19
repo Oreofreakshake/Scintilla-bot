@@ -13,4 +13,5 @@ def GetRank(username, tag, region):
     return json_data_rank
 
 
+
 print("Valorant cogs are ready!\n")
