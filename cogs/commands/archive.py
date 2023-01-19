@@ -13,7 +13,7 @@ async def archive(bot, message):
 
             await bot.send_message(
                 message.chat.id,
-                'Reply "save" to archive the message',
+                'Reply "save" to archive the message\nArchives 👉 https://t.me/+_3YESXd8GVI2NzI1',
             )
     else:
         await bot.send_message(message.chat.id, "Not supported in private messages")

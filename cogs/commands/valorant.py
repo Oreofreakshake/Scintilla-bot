@@ -33,7 +33,7 @@ def ValidateAccout(username, tag):
             level = accountData["data"]["account_level"]
             userregionData = accountData["data"]["region"]
             userregion = RegionDict(userregionData)
-            progress = accountRank["data"]["mmr_change_to_last_game"]
+            progress = accountRank["data"]["ranking_in_tier"]
 
             output = f"`{user}`\n\n• Level: *{level}*\n• Rank: *{rank}*\n• Progress: *{progress}/100*\n• Region: *{userregion}*"
             return output
@@ -75,6 +75,7 @@ async def valorant(bot, message):
             riotID = riotIDarg.split("#")
             username = riotID[0]
             tag = riotID[-1]
+
 
             DataGiven = ValidateAccout(username, tag)
 

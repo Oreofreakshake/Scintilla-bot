@@ -11,5 +11,6 @@ async def help(bot, message):
 /{commandnames.commandsname[2-n]} - Use me for prayer timings in Male' and Addu
 /{commandnames.commandsname[3-n]} - Use me to display current chat's ID
 /{commandnames.commandsname[4-n]} - Use me as a valorant tracker
+\nIf you have any issues or qureies, send a message to @zuccccc\nthank you!
          """,
     )
