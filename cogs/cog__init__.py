@@ -1,14 +1,11 @@
-import random
-
 # my libraries
 # commands
 from cogs.commands.prayertime import prayertime, bot_reply_to_prayertime
 from cogs.commands.archive import archive, bot_reply_archive
 from cogs.commands.getid import getID
 from cogs.commands.valorant import valorant
+from cogs.commands.help import help
 
-# events
-from cogs.events.help import help
 
 
 class Commands:
@@ -53,3 +50,5 @@ class Commands:
         await bot_reply_to_prayertime(self.bot, message)
 
     # -----------------------------------------------------------------------------------------------
+
+print("Commands successfully initialized!\n")

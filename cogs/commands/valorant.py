@@ -98,4 +98,3 @@ async def valorant(bot, message):
     else:
         DataGiven = "you need to give your riot username with tag\n(ex: /valorant SEN TenZ#0505)"
         await bot.send_message(message.chat.id, DataGiven)
-        print("enter argument")

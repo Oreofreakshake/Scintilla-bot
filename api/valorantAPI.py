@@ -1,6 +1,4 @@
 import requests
-import urllib.request
-import os
 
 
 def GetAccount(username, tag):
