@@ -16,7 +16,7 @@
 ### Commands (✔️ complete)
 
     - Prayer time for Mal'e and Addu can be viewed
-    - ~~Corona data can be viewed~~
+    - C̶̶o̶̶r̶̶o̶̶n̶̶a̶̶ ̶d̶̶a̶̶t̶̶a̶̶ ̶c̶̶a̶̶n̶̶ ̶b̶̶e̶̶ ̶v̶̶i̶̶e̶̶w̶̶e̶̶d̶̶  (removed)
     - Can get chat ID
     - Valorant Tracker (can view valorant accounts)
     - Archive messages in a hardcoded mentioned group
