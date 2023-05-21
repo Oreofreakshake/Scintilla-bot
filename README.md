@@ -28,7 +28,7 @@
     - Message when a user joins a group
     - Message when a user leaves a group
 
-## v.3 👈 working on!
+## v.3
 
 #### Private and Group message supported but more focused on private
 `(Not recommended to use in groups)`
@@ -48,7 +48,7 @@
     - No Events
 
 
-### v.4 👈 coming soon!
+## v.4 👈 coming soon!
 
 
 #### Functionalities to be added soon
