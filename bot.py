@@ -90,7 +90,6 @@ async def bot_reply_to_handler(message):
 
 if __name__ == "__main__":
     try:
-        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
         print("I am online\n")
         asyncio.run(SetCommand())
         asyncio.run(bot.infinity_polling())
