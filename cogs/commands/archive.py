@@ -1,37 +1,16 @@
 async def archive(bot, message):
-
-    RahBasedID = -934975694
-
     if message.chat.type != "private":
-        if message.chat.id != RahBasedID:
-
-            await bot.send_message(
-                message.chat.id, "You don't have permission to archive here"
-            )
-
-        else:
-
-            await bot.send_message(
-                message.chat.id,
-                'Reply "save" to archive the message\nArchives 👉 https://t.me/+_3YESXd8GVI2NzI1',
-            )
+        await bot.send_message(message.chat.id, "You don't have permission to archive here")
     else:
-        await bot.send_message(message.chat.id, "Not supported in private messages")
+        await bot.send_message(message.chat.id,'Reply "save" to archive the message\nArchives 👉 https://t.me/+AtmNJEY2dmQzYzRl',)
 
 
 async def bot_reply_archive(bot, message):
-    RahBasedID = -934975694
-    if message.chat.type != "private":
-        if message.chat.id != RahBasedID:
-            await bot.send_message(message.chat.id, "You can't archive here")
-
-        else:
-
-                if message.text == "save":
+    clipgroup = -934975694
+    if message.chat.type == "private":
+            if message.text == "save":
                     msgID = message.reply_to_message.message_id
                     await bot.send_message(message.chat.id, "archived")
-                await bot.forward_message(-1001810772676, message.chat.id, msgID)
-
-
+            await bot.forward_message(clipgroup, message.chat.id, msgID)
     else:
-        await bot.send_message(message.chat.id, "You can't archive private messages")
+        await bot.send_message(message.chat.id,  "You can't archive here")

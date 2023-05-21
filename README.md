@@ -33,14 +33,14 @@
 #### Private and Group message supported but more focused on private
 `(Not recommended to use in groups)`
 
-### Commands (❌ incomplete)
+### Commands (✔️ complete)
 
     - Prayer time for Mal'e and Addu can be viewed
     - Can get chat ID
     - Valorant Tracker (can view valorant accounts)
     - Archive messages in a hardcoded mentioned group
-        - Cannot Archive private messages
-        - Cannot Arcive in the Archive group
+        - Can only Archive private messages
+        - Cannot Archive in groups
     - Help command to get information about the other commands
 
 ### Events (REMOVED) (✔️ complete)
@@ -48,9 +48,12 @@
     - No Events
 
 
+### v.4 👈 coming soon!
+
+
 #### Functionalities to be added soon
-- [ ] DB integration
-- [ ] Login system to claim profiles (vague idea)
-- [ ] More data on search
-- [ ] Archive valorant not related commands
+- DB integration
+- Login system to claim profiles (vague idea)
+- More data on search
+- Archive valorant not related commands
  
