@@ -8,7 +8,7 @@ from cogs import cog__init__
 from cogs import commandnames
 
 # bot = telebot.TeleBot("TOKEN") before async
-bot = AsyncTeleBot("5998871943:AAGKZ4QKoJ1rK_QJm1aDwzG87wb4AeMW__A")
+bot = AsyncTeleBot("TOKEN")
 name = commandnames
 command = cog__init__.Commands(bot)
 
