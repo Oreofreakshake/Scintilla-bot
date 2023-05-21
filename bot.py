@@ -8,7 +8,7 @@ from cogs import event__init__
 from cogs import commandnames
 
 # bot = telebot.TeleBot("TOKEN") before async
-bot = AsyncTeleBot("TOKEN")
+bot = AsyncTeleBot("5998871943:AAGNsWtwIWB3-X8Y89oGzKU6VNvC2llxyF8")
 name = commandnames
 command = cog__init__.Commands(bot)
 event = event__init__.Commands(bot)

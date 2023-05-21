@@ -21,6 +21,7 @@
     - Archive messages in a hardcoded mentioned group
         - Cannot Archive private messages
         - Cannot Arcive in the Archive group
+    - Help command to get information about the other commands
 
 ### Events (✔️ complete)
 
@@ -40,8 +41,8 @@
     - Archive messages in a hardcoded mentioned group
         - Cannot Archive private messages
         - Cannot Arcive in the Archive group
+    - Help command to get information about the other commands
 
 ### Events (REMOVED) (✔️ complete)
 
-    - ~~Message when a user joins a group~~
-    - ~~Message when a user leaves a group~~
+    - No Events
