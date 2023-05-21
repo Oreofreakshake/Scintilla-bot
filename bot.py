@@ -1,6 +1,10 @@
 import telebot
 import asyncio
 from telebot.async_telebot import AsyncTeleBot
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # my lib
 from cogs import cog__init__
@@ -8,7 +12,7 @@ from cogs import cog__init__
 from cogs import commandnames
 
 # bot = telebot.TeleBot("TOKEN") before async
-bot = AsyncTeleBot("5998871943:AAGcUj_uBqyDvwY_vm8NJQsw4-iPMjeCScQ")
+bot = AsyncTeleBot(os.getenv("TOKEN"))
 name = commandnames
 command = cog__init__.Commands(bot)
 
