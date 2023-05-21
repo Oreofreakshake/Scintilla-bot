@@ -31,7 +31,7 @@
 ## v.3 👈 working on!
 
 #### Private and Group message supported but more focused on private
-#### (Not recommended to use in groups)
+`(Not recommended to use in groups)`
 
 ### Commands (❌ incomplete)
 
