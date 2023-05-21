@@ -4,14 +4,14 @@ from telebot.async_telebot import AsyncTeleBot
 
 # my lib
 from cogs import cog__init__
-from cogs import event__init__
+
 from cogs import commandnames
 
 # bot = telebot.TeleBot("TOKEN") before async
-bot = AsyncTeleBot("TOKEN")
+bot = AsyncTeleBot("5998871943:AAGKZ4QKoJ1rK_QJm1aDwzG87wb4AeMW__A")
 name = commandnames
 command = cog__init__.Commands(bot)
-event = event__init__.Commands(bot)
+
 
 
 
@@ -82,17 +82,6 @@ async def bot_reply_to_handler(message):
         await command.bot_reply_to_prayertime(message)
 
 
-# EVENTS
-# on member join
-@bot.message_handler(content_types=["new_chat_members"])
-async def event_one(message):
-    await event.memberjoin(message)
-
-
-# on member leave
-@bot.message_handler(content_types=["left_chat_member"])
-async def event_two(message):
-    await event.memberleft(message)
 
 
 if __name__ == "__main__":
