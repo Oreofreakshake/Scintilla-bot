@@ -46,3 +46,11 @@
 ### Events (REMOVED) (✔️ complete)
 
     - No Events
+
+
+#### Functionalities to be added soon
+- [ ] DB integration
+- [ ] Login system to claim profiles (vague idea)
+- [ ] More data on search
+- [ ] Archive valorant not related commands
+ 
