@@ -48,10 +48,10 @@
     - No Events
 
 
-## v.4 👈 coming soon!
+## Not maintaining anymore
 
 
-#### Functionalities to be added soon
+#### Functionalities you can add to make the bot better
 - DB integration
 - Login system to claim profiles (vague idea)
 - More data on search
